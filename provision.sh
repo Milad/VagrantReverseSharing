@@ -5,7 +5,8 @@ export SMB_USER="ubuntu"
 export SMB_PASS="123456"
 
 # Install Samba
-sudo apt-get update
+echo "Installing Samba"
+sudo apt-get update > /dev/null
 sudo apt-get install samba -y -q > /dev/null
 
 # Create directory for sharing
@@ -13,6 +14,7 @@ sudo mkdir -p /var/www
 sudo chown $SMB_USER:root /var/www
 
 # Configure
+echo "Configuring Samba"
 sudo mv /etc/samba/smb.conf /etc/samba/smb.conf.bak
 
 read -d '' SMB_CNFG <<"EOF"
@@ -37,9 +39,10 @@ read -d '' SMB_CNFG <<"EOF"
     force directory security mode = 2775
 EOF
 
-echo "$SMB_CNFG" | sudo tee /etc/samba/smb.conf
-(echo "$SMB_PASS"; echo "$SMB_PASS") | sudo smbpasswd -sa -U $SMB_USER
+echo "$SMB_CNFG" | sudo tee /etc/samba/smb.conf > /dev/null
+(echo "$SMB_PASS"; echo "$SMB_PASS") | sudo smbpasswd -sa -U $SMB_USER > /dev/null
 
 # Restart
+echo "Restarting Samba"
 sudo service smbd restart
 sudo service nmbd restart

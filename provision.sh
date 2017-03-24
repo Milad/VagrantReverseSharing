@@ -40,7 +40,7 @@ read -d '' SMB_CNFG <<"EOF"
 EOF
 
 echo "$SMB_CNFG" | tee /etc/samba/smb.conf > /dev/null
-(echo "$SMB_PASS"; echo "$SMB_PASS") | smbpasswd -sa -U $SMB_USER > /dev/null
+printf '%s\n%s\n' "$SMB_PASS" "$SMB_PASS" | smbpasswd -sa -U $SMB_USER > /dev/null
 
 # Restart
 echo "Restarting Samba"

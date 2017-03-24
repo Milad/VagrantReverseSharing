@@ -25,7 +25,7 @@ read -d '' SMB_CNFG <<"EOF"
     comment = Ubuntu File Server Share
     path = /var/www
     browsable = yes
-    guest ok = yes
+    guest ok = no
     read only = no
 
     create mask = 644
@@ -45,4 +45,4 @@ echo "$SMB_CNFG" | sudo tee /etc/samba/smb.conf > /dev/null
 # Restart
 echo "Restarting Samba"
 sudo service smbd restart
-sudo service nmbd restart
+# sudo service nmbd restart

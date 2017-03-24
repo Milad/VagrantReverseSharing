@@ -1,15 +1,14 @@
 ﻿# Autodetect text files
 * text=auto
-core.eol=lf
 
 # ...Unless the name matches the following
 # overriding patterns
 
 # Definitively text files 
-Vagrantfile text
-.gitignore text
-.gitattributes text
-*.sh text
+Vagrantfile text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+*.sh text eol=lf
 
 # Ensure those won't be messed up with
 *.jpg binary

@@ -6,7 +6,7 @@ export SMB_PASS="123456"
 
 # Install Samba
 sudo apt-get update
-sudo apt-get install samba -y -q
+sudo apt-get install samba -y -q > /dev/null
 
 # Create directory for sharing
 sudo mkdir -p /var/www
